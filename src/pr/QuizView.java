@@ -24,66 +24,68 @@ public class QuizView {
 
     public void init() {
 
-
-
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(700, 650);
-        frame.getContentPane().setBackground(new Color(40, 40, 40));
+        frame.setSize(640, 640);
+        frame.getContentPane().setBackground(new Color(50, 50, 50));
         frame.setLocationRelativeTo(null);
         frame.setLayout(null);
+        frame.setResizable(false);
 
-        textField.setBounds(0, 0, 750, 60);
+        textField.setBounds(0, 0, 650, 60);
         textField.setBackground(new Color(25, 25, 25));
-        textField.setForeground(new Color(200, 174, 5, 218));
-        textField.setFont(new Font("Ink Free", Font.BOLD, 35));
+        textField.setForeground(new Color(111, 86, 1, 218));
+        textField.setFont(new Font("Arial Black", Font.BOLD, 35));
         textField.setBorder(BorderFactory.createBevelBorder(1));
         textField.setHorizontalAlignment(JTextField.CENTER);
         textField.setEditable(false);
+        textField.setText("Frage 1");
 
         textArea.setBounds(0, 60, 750, 55);
         textArea.setLineWrap(true);
         textArea.setWrapStyleWord(true);
         textArea.setBackground(new Color(25, 25, 25));
         textArea.setForeground(white);
-        textArea.setFont(new Font("MV Boli", Font.BOLD, 30));
+        textArea.setFont(new Font("Default", Font.BOLD, 27));
         textArea.setBorder(BorderFactory.createBevelBorder(1));
         textArea.setEditable(false);
+        textArea.setText("Wer ist der Entwickler von Java?");
 
-        buttonA.setBounds(0, 110, 100, 100);
-        buttonA.setFont(new Font("MV Boli", Font.BOLD, 35));
+        buttonA.setBounds(0, 120, 100, 100);
+        buttonA.setFont(new Font("Default", Font.BOLD, 30));
         buttonA.setFocusable(false);
         buttonA.setText("A");
 
-        buttonB.setBounds(0, 200, 100, 100);
-        buttonB.setFont(new Font("MV Boli", Font.BOLD, 35));
+        buttonB.setBounds(0, 220, 100, 100);
+        buttonB.setFont(new Font("Default", Font.BOLD, 27));
         buttonB.setFocusable(false);
         buttonB.setText("B");
 
-        buttonC.setBounds(0, 300, 100, 100);
-        buttonC.setFont(new Font("MV Boli", Font.BOLD, 35));
+        buttonC.setBounds(0, 320, 100, 100);
+        buttonC.setFont(new Font("Default", Font.BOLD, 27));
         buttonC.setFocusable(false);
         buttonC.setText("C");
 
-
-
-        answerA.setBounds(125, 100, 500, 100);
+        answerA.setBounds(125, 115, 500, 100);
         answerA.setBackground(new Color(50, 50, 50));
         answerA.setForeground(white);
-        answerA.setFont(new Font("MV Boli", Font.PLAIN, 35));
+        answerA.setFont(new Font("Default", Font.PLAIN, 25));
+        answerA.setText("Mark Zuckerberg");
 
-        answerB.setBounds(125, 200, 500, 100);
+
+        answerB.setBounds(125, 210, 500, 100);
         answerB.setBackground(new Color(50, 50, 50));
         answerB.setForeground(white);
-        answerB.setFont(new Font("MV Boli", Font.PLAIN, 35));
+        answerB.setFont(new Font("Default", Font.PLAIN, 25));
+        answerB.setText("David Beckam");
 
-        answerC.setBounds(125, 300, 500, 100);
+        answerC.setBounds(125, 320, 500, 100);
         answerC.setBackground(new Color(50, 50, 50));
         answerC.setForeground(white);
-        answerC.setFont(new Font("MV Boli", Font.PLAIN, 35));
+        answerC.setFont(new Font("Default", Font.PLAIN, 25));
+        answerC.setText("James Gosling");
 
 
-
-        secondsLeft.setBounds(535, 510, 100, 100);
+        secondsLeft.setBounds(280, 500, 100, 100);
         secondsLeft.setBackground(new Color(25, 25, 25));
         secondsLeft.setForeground(new Color(255, 0, 0));
         secondsLeft.setFont(new Font("Ink Free", Font.BOLD, 60));
@@ -100,7 +102,7 @@ public class QuizView {
         numberRight.setHorizontalAlignment(JTextField.CENTER);
         numberRight.setEditable(false);
 
-        percentage.setBounds(225, 325, 200, 100);
+        percentage.setBounds(225, 320, 200, 100);
         percentage.setBackground(new Color(25, 25, 25));
         percentage.setForeground(new Color(25, 255, 0));
         percentage.setFont(new Font("Ink Free", Font.BOLD, 50));
@@ -168,9 +170,6 @@ public class QuizView {
 
     public JTextField getPercentage() {
         return percentage;
-    }
-    public Color getWhite() {
-        return white;
     }
 
     public Color getRed() {

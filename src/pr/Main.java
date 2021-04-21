@@ -7,10 +7,5 @@ public class Main {
         QuizView quizView = new QuizView();
         quizView.init();
 
-
-
-
-
-
     }
 }
