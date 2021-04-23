@@ -25,13 +25,14 @@ public class QuizView {
     public void init() {
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(640, 640);
+        frame.setSize(680, 640);
         frame.getContentPane().setBackground(new Color(50, 50, 50));
         frame.setLocationRelativeTo(null);
         frame.setLayout(null);
         frame.setResizable(false);
 
-        textField.setBounds(0, 0, 650, 60);
+
+        textField.setBounds(0, -10, 680, 80);
         textField.setBackground(new Color(25, 25, 25));
         textField.setForeground(new Color(111, 86, 1, 218));
         textField.setFont(new Font("Arial Black", Font.BOLD, 35));
@@ -40,52 +41,54 @@ public class QuizView {
         textField.setEditable(false);
         textField.setText("Frage 1");
 
-        textArea.setBounds(0, 60, 750, 55);
+
+
+        textArea.setBounds(0, 68, 750, 50);
         textArea.setLineWrap(true);
         textArea.setWrapStyleWord(true);
         textArea.setBackground(new Color(25, 25, 25));
         textArea.setForeground(white);
-        textArea.setFont(new Font("Default", Font.BOLD, 27));
+        textArea.setFont(new Font("Default", Font.BOLD, 23));
         textArea.setBorder(BorderFactory.createBevelBorder(1));
         textArea.setEditable(false);
         textArea.setText("Wer ist der Entwickler von Java?");
 
         buttonA.setBounds(0, 120, 100, 100);
-        buttonA.setFont(new Font("Default", Font.BOLD, 30));
+        buttonA.setFont(new Font("Default", Font.BOLD, 25));
         buttonA.setFocusable(false);
         buttonA.setText("A");
 
         buttonB.setBounds(0, 220, 100, 100);
-        buttonB.setFont(new Font("Default", Font.BOLD, 27));
+        buttonB.setFont(new Font("Default", Font.BOLD, 25));
         buttonB.setFocusable(false);
         buttonB.setText("B");
 
         buttonC.setBounds(0, 320, 100, 100);
-        buttonC.setFont(new Font("Default", Font.BOLD, 27));
+        buttonC.setFont(new Font("Default", Font.BOLD, 25));
         buttonC.setFocusable(false);
         buttonC.setText("C");
 
         answerA.setBounds(125, 115, 500, 100);
         answerA.setBackground(new Color(50, 50, 50));
         answerA.setForeground(white);
-        answerA.setFont(new Font("Default", Font.PLAIN, 25));
+        answerA.setFont(new Font("Default", Font.PLAIN, 20));
         answerA.setText("Mark Zuckerberg");
 
 
         answerB.setBounds(125, 210, 500, 100);
         answerB.setBackground(new Color(50, 50, 50));
         answerB.setForeground(white);
-        answerB.setFont(new Font("Default", Font.PLAIN, 25));
+        answerB.setFont(new Font("Default", Font.PLAIN, 20));
         answerB.setText("David Beckam");
 
         answerC.setBounds(125, 320, 500, 100);
         answerC.setBackground(new Color(50, 50, 50));
         answerC.setForeground(white);
-        answerC.setFont(new Font("Default", Font.PLAIN, 25));
+        answerC.setFont(new Font("Default", Font.PLAIN, 20));
         answerC.setText("James Gosling");
 
 
-        secondsLeft.setBounds(280, 500, 100, 100);
+        secondsLeft.setBounds(300, 500, 100, 100);
         secondsLeft.setBackground(new Color(25, 25, 25));
         secondsLeft.setForeground(new Color(255, 0, 0));
         secondsLeft.setFont(new Font("Ink Free", Font.BOLD, 60));
@@ -110,16 +113,16 @@ public class QuizView {
         percentage.setHorizontalAlignment(JTextField.CENTER);
         percentage.setEditable(false);
 
-
-        frame.add(secondsLeft);
-        frame.add(answerA);
-        frame.add(answerB);
-        frame.add(answerC);
+        frame.add(textField);
+        frame.add(textArea);
         frame.add(buttonA);
         frame.add(buttonB);
         frame.add(buttonC);
-        frame.add(textArea);
-        frame.add(textField);
+        frame.add(answerA);
+        frame.add(answerB);
+        frame.add(answerC);
+        frame.add(secondsLeft);
+
         frame.setVisible(true);
 
     }
