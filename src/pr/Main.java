@@ -9,7 +9,7 @@ public class Main {
         QuizView quizView = new QuizView();
         quizView.init();
 
-        Quiz quiz = new Quiz();
+    
 
 
 
