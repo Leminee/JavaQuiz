@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Quiz extends Question implements ActionListener {
+public class QuizModel extends Question implements ActionListener {
 
     private int seconds = 30;
     private int correctAnswers = 0;
