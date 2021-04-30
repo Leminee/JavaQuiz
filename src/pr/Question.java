@@ -27,7 +27,7 @@ public class Question {
             {"///Kommentar","**/Kommenter","// Kommentara"},
             {"Math.plus, Math.minus,Math.geteilt","Math.sin(x), Math.sqrt(x), Math.log(x)","funktion.max(x,y), funktion.min(x,y) funktion.cos(x)"},
             {"eigenständiges Programm, das nur virtuelle Maschine als Interpreter braucht und „stand-alone“ lauffähig ist","Programm, das nur als Unterprogram eines Webbrowsers läuft","Eine Handy App"},
-            {"Charakter, Aussehen, Verhalten",""}
+            {"Charakter, Aussehen, Benehmen","Identität, Zustand, Verhalten","Struktur, Datenmenge, Entwicklungsumgebung"}
     };
     public static final char[] answers = 		{
             'A',
