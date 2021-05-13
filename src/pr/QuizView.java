@@ -3,9 +3,8 @@ package pr;
 import java.awt.*;
 import javax.swing.*;
 
-public class QuizView {
+public class QuizView extends JFrame {
 
-    private final JFrame frame = new JFrame();
     private final JTextField textField = new JTextField();
     private final JTextArea textArea = new JTextArea();
     private final JButton buttonA = new JButton();
@@ -17,19 +16,19 @@ public class QuizView {
     private final JLabel secondsLeft = new JLabel();
     private final JTextField numberRight = new JTextField();
     private final JTextField percentage = new JTextField();
-    private final Color white = new Color(255, 255,255);
-    private final Color red = new Color(255, 0, 0);
-    private final Color green = new Color(25, 255, 0);
+    public static final Color WHITE = new Color(255, 255,255);
+    public static final Color RED = new Color(255, 0, 0);
+    public static final Color GREEN = new Color(25, 255, 0);
 
 
     public void init() {
 
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(680, 640);
-        frame.getContentPane().setBackground(new Color(50, 50, 50));
-        frame.setLocationRelativeTo(null);
-        frame.setLayout(null);
-        frame.setResizable(false);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(680, 640);
+        getContentPane().setBackground(new Color(50, 50, 50));
+        setLocationRelativeTo(null);
+        setLayout(null);
+        setResizable(false);
 
 
         textField.setBounds(0, -10, 680, 80);
@@ -39,7 +38,6 @@ public class QuizView {
         textField.setBorder(BorderFactory.createBevelBorder(1));
         textField.setHorizontalAlignment(JTextField.CENTER);
         textField.setEditable(false);
-        textField.setText("Frage 1");
 
 
 
@@ -47,11 +45,11 @@ public class QuizView {
         textArea.setLineWrap(true);
         textArea.setWrapStyleWord(true);
         textArea.setBackground(new Color(25, 25, 25));
-        textArea.setForeground(white);
+        textArea.setForeground(WHITE);
         textArea.setFont(new Font("Default", Font.BOLD, 23));
         textArea.setBorder(BorderFactory.createBevelBorder(1));
         textArea.setEditable(false);
-        textArea.setText("Wer ist der Entwickler von Java?");
+
 
         buttonA.setBounds(0, 120, 100, 100);
         buttonA.setFont(new Font("Default", Font.BOLD, 25));
@@ -70,22 +68,18 @@ public class QuizView {
 
         answerA.setBounds(125, 115, 500, 100);
         answerA.setBackground(new Color(50, 50, 50));
-        answerA.setForeground(white);
+        answerA.setForeground(WHITE);
         answerA.setFont(new Font("Default", Font.PLAIN, 20));
-        answerA.setText("Mark Zuckerberg");
-
 
         answerB.setBounds(125, 210, 500, 100);
         answerB.setBackground(new Color(50, 50, 50));
-        answerB.setForeground(white);
+        answerB.setForeground(WHITE);
         answerB.setFont(new Font("Default", Font.PLAIN, 20));
-        answerB.setText("David Beckam");
 
         answerC.setBounds(125, 320, 500, 100);
         answerC.setBackground(new Color(50, 50, 50));
-        answerC.setForeground(white);
+        answerC.setForeground(WHITE);
         answerC.setFont(new Font("Default", Font.PLAIN, 20));
-        answerC.setText("James Gosling");
 
 
         secondsLeft.setBounds(300, 500, 100, 100);
@@ -113,24 +107,19 @@ public class QuizView {
         percentage.setHorizontalAlignment(JTextField.CENTER);
         percentage.setEditable(false);
 
-        frame.add(textField);
-        frame.add(textArea);
-        frame.add(buttonA);
-        frame.add(buttonB);
-        frame.add(buttonC);
-        frame.add(answerA);
-        frame.add(answerB);
-        frame.add(answerC);
-        frame.add(secondsLeft);
+        add(textField);
+        add(textArea);
+        add(buttonA);
+        add(buttonB);
+        add(buttonC);
+        add(answerA);
+        add(answerB);
+        add(answerC);
+        add(secondsLeft);
 
-        frame.setVisible(true);
+        setVisible(true);
 
     }
-
-    public JFrame getFrame() {
-        return frame;
-    }
-
     public JTextField getTextField() {
         return textField;
     }
@@ -174,14 +163,5 @@ public class QuizView {
     public JTextField getPercentage() {
         return percentage;
     }
-
-    public Color getRed() {
-        return red;
-    }
-
-    public Color getGreen() {
-        return green;
-    }
-
 }
 

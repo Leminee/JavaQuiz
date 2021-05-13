@@ -6,15 +6,14 @@ import java.awt.event.ActionListener;
 
 public class QuizModel extends Question implements ActionListener {
 
+    QuizView quizView = new QuizView();
+
     private int seconds = 30;
     private int correctAnswers = 0;
     private int index;
     private char answer;
-    private final int allQuestions = questions.length;
+    private final int ALL_QUESTIONS = getQuestions().length;
 
-
-
-    QuizView quizView = new QuizView();
 
     Timer timer = new Timer(1000, e -> {
         seconds--;
@@ -27,16 +26,16 @@ public class QuizModel extends Question implements ActionListener {
 
     public void nextQuestion() {
 
-        if (index >= allQuestions) {
+        if (index >= ALL_QUESTIONS) {
             results();
 
         } else {
 
             quizView.getTextArea().setText("Fragen " + (index + 1));
-            quizView.getTextArea().setText(questions[index]);
-            quizView.getAnswerA().setText(options[index][0]);
-            quizView.getAnswerB().setText(options[index][1]);
-            quizView.getAnswerC().setText(options[index][2]);
+            quizView.getTextArea().setText(getQuestions()[index]);
+            quizView.getAnswerA().setText(getOptions()[index][0]);
+            quizView.getAnswerB().setText(getOptions()[index][1]);
+            quizView.getAnswerC().setText(getOptions()[index][2]);
 
             timer.start();
         }
@@ -48,7 +47,7 @@ public class QuizModel extends Question implements ActionListener {
         quizView.getAnswerB().setEnabled(false);
         quizView.getAnswerC().setEnabled(false);
 
-        int result = (int) ((correctAnswers / (double) allQuestions) * 100);
+        int result = (int) ((correctAnswers / (double) ALL_QUESTIONS) * 100);
 
         quizView.getTextField().setText("QuizView Ergebnis");
         quizView.getTextArea().setText("");
@@ -56,11 +55,11 @@ public class QuizModel extends Question implements ActionListener {
         quizView.getAnswerB().setText("");
         quizView.getAnswerC().setText("");
 
-        quizView.getNumberRight().setText(correctAnswers + "/" + allQuestions);
+        quizView.getNumberRight().setText(correctAnswers + "/" + ALL_QUESTIONS);
         quizView.getPercentage().setText(result + "%");
 
-        quizView.getFrame().add(quizView.getNumberRight());
-        quizView.getFrame().add(quizView.getPercentage());
+        quizView.add(quizView.getNumberRight()); //hier
+        quizView.add(quizView.getPercentage());
 
     }
 
@@ -72,18 +71,18 @@ public class QuizModel extends Question implements ActionListener {
         quizView.getButtonB().setEnabled(false);
         quizView.getButtonC().setEnabled(false);
 
-        if (Question.answers[index] != 'A')
-            quizView.getAnswerA().setForeground(quizView.getRed());
-        if (Question.answers[index] != 'B')
-            quizView.getAnswerB().setForeground(quizView.getRed());
-        if (Question.answers[index] != 'C')
-            quizView.getAnswerC().setForeground(quizView.getRed());
+        if (getAnswers()[index] != 'A')
+            quizView.getAnswerA().setForeground(QuizView.RED);
+        if (getAnswers()[index] != 'B')
+            quizView.getAnswerB().setForeground(QuizView.RED);
+        if (getAnswers()[index] != 'C')
+            quizView.getAnswerC().setForeground(QuizView.RED);
 
         Timer pause = new Timer(2000, e -> {
 
-            quizView.getAnswerA().setForeground(quizView.getGreen());
-            quizView.getButtonB().setForeground(quizView.getGreen());
-            quizView.getButtonC().setForeground(quizView.getGreen());
+            quizView.getAnswerA().setForeground(QuizView.GREEN);
+            quizView.getButtonB().setForeground(QuizView.GREEN);
+            quizView.getButtonC().setForeground(QuizView.GREEN);
 
             answer = ' ';
             seconds = 30;
@@ -109,19 +108,19 @@ public class QuizModel extends Question implements ActionListener {
 
         if (e.getSource() == quizView.getButtonA()) {
             answer = 'A';
-            if (answer == Question.answers[index]) {
+            if (answer == getAnswers()[index]) {
                 correctAnswers++;
             }
         }
         if (e.getSource() == quizView.getButtonA()) {
             answer = 'B';
-            if (answer == Question.answers[index]) {
+            if (answer == getAnswers()[index]) {
                 correctAnswers++;
             }
         }
         if (e.getSource() == quizView.getButtonB()) {
             answer = 'C';
-            if (answer == Question.answers[index]) {
+            if (answer == getAnswers()[index]) {
                 correctAnswers++;
             }
         }
