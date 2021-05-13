@@ -8,7 +8,7 @@ public class QuizModel extends Question implements ActionListener {
 
     QuizView quizView = new QuizView();
 
-    private int seconds = 30;
+    private int seconds = 50;
     private int correctAnswers = 0;
     private int index;
     private char answer;
