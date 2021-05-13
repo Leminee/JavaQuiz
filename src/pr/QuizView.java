@@ -118,7 +118,6 @@ public class QuizView extends JFrame {
         add(secondsLeft);
 
         setVisible(true);
-
     }
     public JTextField getTextField() {
         return textField;
