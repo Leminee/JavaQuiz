@@ -1,9 +1,11 @@
 package pr;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.*;
 
-public class QuizView extends JFrame {
+public class QuizView extends JFrame implements ActionListener {
 
     private final JTextField textField = new JTextField();
     private final JTextArea textArea = new JTextArea();
@@ -16,10 +18,24 @@ public class QuizView extends JFrame {
     private final JLabel secondsLeft = new JLabel();
     private final JTextField numberRight = new JTextField();
     private final JTextField percentage = new JTextField();
-    public static final Color WHITE = new Color(255, 255,255);
+    public static final Color WHITE = new Color(255, 255, 255);
     public static final Color RED = new Color(255, 0, 0);
     public static final Color GREEN = new Color(25, 255, 0);
 
+    private int seconds = 15;
+    private int correctAnswers = 0;
+    private int index;
+    private char answer;
+    private final int ALL_QUESTIONS = Question.questions.length;
+
+
+    Timer timer = new Timer(1000, e -> {
+        seconds--;
+        secondsLeft.setText(String.valueOf(seconds));
+        if(seconds<=0) {
+            displayAnswer();
+        }
+    });
 
     public void init() {
 
@@ -40,7 +56,6 @@ public class QuizView extends JFrame {
         textField.setEditable(false);
 
 
-
         textArea.setBounds(0, 68, 750, 50);
         textArea.setLineWrap(true);
         textArea.setWrapStyleWord(true);
@@ -54,16 +69,19 @@ public class QuizView extends JFrame {
         buttonA.setBounds(0, 120, 100, 100);
         buttonA.setFont(new Font("Default", Font.BOLD, 25));
         buttonA.setFocusable(false);
+        buttonA.addActionListener(this);
         buttonA.setText("A");
 
         buttonB.setBounds(0, 220, 100, 100);
         buttonB.setFont(new Font("Default", Font.BOLD, 25));
         buttonB.setFocusable(false);
+        buttonB.addActionListener(this);
         buttonB.setText("B");
 
         buttonC.setBounds(0, 320, 100, 100);
         buttonC.setFont(new Font("Default", Font.BOLD, 25));
         buttonC.setFocusable(false);
+        buttonC.addActionListener(this);
         buttonC.setText("C");
 
         answerA.setBounds(125, 115, 500, 100);
@@ -116,10 +134,114 @@ public class QuizView extends JFrame {
         add(answerB);
         add(answerC);
         add(secondsLeft);
-
         setVisible(true);
+
+        nextQuestion();
     }
-    public JTextField getTextField() {
+
+
+    public void nextQuestion() {
+        if (index >= ALL_QUESTIONS) {
+            results();
+
+        } else {
+
+            textField.setText("Fragen " +(index + 1));
+            textArea.setText(Question.questions[index]);
+            answerA.setText(Question.options[index][0]);
+            answerB.setText(Question.options[index][1]);
+            answerC.setText(Question.options[index][2]);
+            timer.start();
+
+        }
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+        buttonA.setEnabled(false);
+        buttonB.setEnabled(false);
+        buttonC.setEnabled(false);
+
+        if (e.getSource() == buttonA) {
+            answer = 'A';
+            if (answer == Question.answers[index]) {
+                correctAnswers++;
+            }
+        }
+        if (e.getSource() == buttonB) {
+            answer = 'B';
+            if (answer == Question.answers[index]) {
+                correctAnswers++;
+            }
+        }
+        if (e.getSource() == buttonC) {
+            answer = 'C';
+            if (answer == Question.answers[index]) {
+                correctAnswers++;
+            }
+        }
+        displayAnswer();
+    }
+
+    public void displayAnswer() {
+
+        timer.stop();
+
+        buttonA.setEnabled(false);
+        buttonB.setEnabled(false);
+        buttonC.setEnabled(false);
+
+        if(Question.answers[index] != 'A')
+            answerA.setForeground(QuizView.RED);
+        if(Question.answers[index] != 'B')
+            answerB.setForeground(QuizView.RED);
+        if(Question.answers[index] != 'C')
+            answerC.setForeground(QuizView.RED);
+
+        Timer pause = new Timer(2000, e -> {
+
+            answerA.setForeground(QuizView.GREEN);
+            answerB.setForeground(QuizView.GREEN);
+            answerC.setForeground(QuizView.GREEN);
+
+            answer = ' ';
+            seconds=15;
+            secondsLeft.setText(String.valueOf(seconds));
+            buttonA.setEnabled(true);
+            buttonB.setEnabled(true);
+            buttonC.setEnabled(true);
+            index++;
+            nextQuestion();
+        });
+        pause.setRepeats(false);
+        pause.start();
+    }
+
+
+
+    public void results() {
+
+        buttonA.setEnabled(false);
+        buttonB.setEnabled(false);
+        buttonC.setEnabled(false);
+
+        int result = (int) ((correctAnswers / (double) ALL_QUESTIONS) * 100);
+
+        textField.setText("Quiz Ergebnis");
+        textArea.setText("");
+        answerA.setText("");
+        answerB.setText("");
+        answerC.setText("");
+
+        numberRight.setText(correctAnswers + "/" + ALL_QUESTIONS);
+        percentage.setText(result + "%");
+        add(numberRight);
+        add(percentage);
+    }
+
+
+        public JTextField getTextField() {
         return textField;
     }
 
@@ -155,6 +277,7 @@ public class QuizView extends JFrame {
         return secondsLeft;
     }
 
+
     public JTextField getNumberRight() {
         return numberRight;
     }
@@ -162,5 +285,6 @@ public class QuizView extends JFrame {
     public JTextField getPercentage() {
         return percentage;
     }
+
 }
 
