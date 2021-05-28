@@ -8,6 +8,10 @@ import java.awt.event.ActionListener;
 public class QuizModel extends Question implements ActionListener {
 
     QuizView quizView = new QuizView();
+<<<<<<< HEAD
+=======
+
+>>>>>>> f62c946199fbf6b12fdec0f23a903936a5f975cc
     private int seconds = 30;
     private int correctAnswers = 0;
     private int index;
