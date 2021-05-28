@@ -7,12 +7,12 @@ public class Question {
             "Was ist Integer?",
             "Welcher dieser Datentypen ist kein primitiver Datentyp?",
             "Was wird mit System.gc() aufgerufen?",
-            "woran erkennt man eine Methode ohne Rückgabewert?",
+            "woran erkennt man eine Methode ohne Rückgabetyp?",
             "Wofür steht OOP",
-            "Wie erzeugt man in Java einen Mehrzeiligen Kommentar?",
+            "Welche dieser Methoden besitzt die String-Klasse nicht?",
             "Wie erzeugt man in Java einen Einzeiligen Kommentar?",
-            "Bei welcher Antwort handelt es sich um Mathematische Funktionen?",
-            "Welche 3 wichtige Eigenschaften hat ein Objekt?"
+            "Wie wandelt man einen String (str) in einen int um?",
+            "Wo ist der Unterschied zwischen i++ und ++i?"
     };
 
 
@@ -23,10 +23,10 @@ public class Question {
             {"Garbage Collector", "exit", "Reader"},
             {"static", "void", "public"},
             {"Operating Object Programming", "Object Or Parameter", "Objekt Orientierte Programmierung"},
-            {"ArrayIndexOutOfBoundsExeption", "NullPointerExeption", "ArrayLenghtExeption"},
-            {"/* Kommentar */", "/# Kommentar #/", "**/ Kommentar **/"},
-            {"///Kommentar", "**/Kommenter", "// Kommentara"},
-            {"Math.plus, Math.minus,Math.geteilt", "Math.sin(x), Math.sqrt(x), Math.log(x)", "funktion.max(x,y), funktion.min(x,y) funktion.cos(x)"},
+            {"concat", "append", "getString()"},
+            {"///Kommentar", "**/Kommentar", "//Kommentar"},
+            {"int number = Integer.parseInt(str);", "int number = String.valueOf(str);", " int number = str;"},
+            {"Es gibt keinen Unterschied", "Beide erhöhen i um 1, der Rückgabewert von i++ ist aber der vorherige Wert, während der Rückgabewert von ++i der neue Wert ist.", "i++ erhöht i um 1, ++i erhöht i um 2"},
     };
     public static final char[] answers = {
             'C',
@@ -35,7 +35,7 @@ public class Question {
             'A',
             'B',
             'C',
-            'B',
+            'C',
             'C',
             'A',
             'B'

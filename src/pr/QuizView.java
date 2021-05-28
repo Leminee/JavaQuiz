@@ -22,7 +22,7 @@ public class QuizView extends JFrame implements ActionListener {
     public static final Color RED = new Color(255, 0, 0);
     public static final Color GREEN = new Color(25, 255, 0);
 
-    private int seconds = 15;
+    private int seconds = 20;
     private int correctAnswers = 0;
     private int index;
     private char answer;
@@ -61,7 +61,7 @@ public class QuizView extends JFrame implements ActionListener {
         textArea.setWrapStyleWord(true);
         textArea.setBackground(new Color(25, 25, 25));
         textArea.setForeground(WHITE);
-        textArea.setFont(new Font("Default", Font.BOLD, 23));
+        textArea.setFont(new Font("Default", Font.BOLD, 20));
         textArea.setBorder(BorderFactory.createBevelBorder(1));
         textArea.setEditable(false);
 
@@ -206,7 +206,7 @@ public class QuizView extends JFrame implements ActionListener {
             answerC.setForeground(QuizView.GREEN);
 
             answer = ' ';
-            seconds=15;
+            seconds = 20;
             secondsLeft.setText(String.valueOf(seconds));
             buttonA.setEnabled(true);
             buttonB.setEnabled(true);
@@ -217,7 +217,6 @@ public class QuizView extends JFrame implements ActionListener {
         pause.setRepeats(false);
         pause.start();
     }
-
 
 
     public void results() {
