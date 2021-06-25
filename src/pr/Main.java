@@ -10,6 +10,10 @@ public class Main{
         QuizView quizView = new QuizView();
         quizView.init();
 
+        QuizModel quizModel = new QuizModel();
+
+        QuizController quizController = new QuizController(quizView, quizModel);
+        quizView.setVisible(true);
     }
 }
 

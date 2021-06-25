@@ -1,6 +1,5 @@
 package pr;
 
-
 import java.io.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -9,9 +8,8 @@ import java.util.List;
 
 public class Storage {
 
-
     private final String DATA = "/Users/lem/Documents/Projekte/PRII/storage.txt";
-    private static double averageCorrectAnswers;
+    private static int averageCorrectAnswers;
     private final List<String> amountCorrectAnswers = new ArrayList<>();
 
     public void storeData() {
@@ -52,8 +50,10 @@ public class Storage {
 
                 if (isEven(amount)) {
 
+                    if (line.length() < 32) {
+                        return;
+                    }
                     amountCorrectAnswers.add(line.substring(32, 33));
-
                 }
                 amount++;
             }
@@ -68,15 +68,15 @@ public class Storage {
 
     public void calculateAverage() {
 
-        double sum = 0;
-        for (int i = 0; i < amountCorrectAnswers.size() - 1; i++) {
+        int sum = 0;
+        for (String amountCorrectAnswer : amountCorrectAnswers) {
 
-
-            sum += Integer.parseInt(amountCorrectAnswers.get(i));
+            sum += Integer.parseInt(amountCorrectAnswer);
         }
-
+        if (amountCorrectAnswers.size() == 0) {
+            return;
+        }
         averageCorrectAnswers = sum/amountCorrectAnswers.size();
-
     }
 
     private boolean isEven(int number) {
@@ -84,7 +84,7 @@ public class Storage {
         return number % 2 == 0;
     }
 
-    public double getAverageCorrectAnswers() {
+    public int getAverageCorrectAnswers() {
         return averageCorrectAnswers;
     }
 }
