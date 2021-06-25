@@ -3,12 +3,14 @@ package pr;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.*;
+import java.time.LocalDate;
 
 public class QuizModel extends Question implements ActionListener {
 
     QuizView quizView = new QuizView();
     private int seconds = 30;
-    private int correctAnswers = 0;
+    public static int  correctAnswers = 0;
     private int index;
     private char answer;
     private final int ALL_QUESTIONS = questions.length;
@@ -21,13 +23,15 @@ public class QuizModel extends Question implements ActionListener {
         }
     });
 
-    public void nextQuestion() {
+    public QuizModel() throws IOException {
+    }
+
+    public void nextQuestion() throws IOException {
         if (index >= ALL_QUESTIONS) {
             results();
 
-        } else {
 
-            System.out.println("test");
+        } else {
 
             quizView.getTextArea().setText("Fragen " +(index + 1));
             quizView.getTextArea().setText(questions[index]);
@@ -96,14 +100,20 @@ public class QuizModel extends Question implements ActionListener {
             quizView.getButtonB().setEnabled(true);
             quizView.getButtonC().setEnabled(true);
             index++;
-            nextQuestion();
+
+            try {
+                nextQuestion();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+
         });
         pause.setRepeats(false);
         pause.start();
     }
 
 
-    public void results() {
+    public void results(){
 
         quizView.getButtonA().setEnabled(false);
         quizView.getAnswerB().setEnabled(false);
@@ -122,6 +132,7 @@ public class QuizModel extends Question implements ActionListener {
 
         quizView.add(quizView.getNumberRight());
         quizView.add(quizView.getPercentage());
+
 
     }
 

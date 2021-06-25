@@ -3,9 +3,10 @@ package pr;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.*;
 import javax.swing.*;
 
-public class QuizView extends JFrame implements ActionListener {
+public class QuizView extends JFrame implements ActionListener, Serializable{
 
     private final JTextField textField = new JTextField();
     private final JTextArea textArea = new JTextArea();
@@ -22,11 +23,12 @@ public class QuizView extends JFrame implements ActionListener {
     public static final Color RED = new Color(255, 0, 0);
     public static final Color GREEN = new Color(25, 255, 0);
 
-    private int seconds = 20;
-    private int correctAnswers = 0;
+    private int seconds = 5;
+    private static int correctAnswers = 0;
     private int index;
     private char answer;
     private final int ALL_QUESTIONS = Question.questions.length;
+
 
 
     Timer timer = new Timer(1000, e -> {
@@ -37,7 +39,10 @@ public class QuizView extends JFrame implements ActionListener {
         }
     });
 
-    public void init() {
+    public QuizView() throws IOException {
+    }
+
+    public void init() throws IOException {
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(680, 640);
@@ -140,7 +145,7 @@ public class QuizView extends JFrame implements ActionListener {
     }
 
 
-    public void nextQuestion() {
+    public void nextQuestion() throws IOException {
         if (index >= ALL_QUESTIONS) {
             results();
 
@@ -206,29 +211,39 @@ public class QuizView extends JFrame implements ActionListener {
             answerC.setForeground(QuizView.GREEN);
 
             answer = ' ';
-            seconds = 20;
+            seconds = 5;
             secondsLeft.setText(String.valueOf(seconds));
             buttonA.setEnabled(true);
             buttonB.setEnabled(true);
             buttonC.setEnabled(true);
             index++;
-            nextQuestion();
+            try {
+                nextQuestion();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
         });
         pause.setRepeats(false);
         pause.start();
     }
 
 
-    public void results() {
+    public void results()  {
+
+        Storage storage = new Storage();
+
+        storage.storeData();
+        storage.readData();
+        storage.calculateAverage();
 
         buttonA.setEnabled(false);
         buttonB.setEnabled(false);
         buttonC.setEnabled(false);
 
         int result = (int) ((correctAnswers / (double) ALL_QUESTIONS) * 100);
-
+        double amount = storage.getAverageCorrectAnswers();
         textField.setText("Quiz Ergebnis");
-        textArea.setText("");
+        textArea.setText("Im Durchschnitt haben Spieler " + amount + " richtige Antworten");
         answerA.setText("");
         answerB.setText("");
         answerC.setText("");
@@ -237,10 +252,13 @@ public class QuizView extends JFrame implements ActionListener {
         percentage.setText(result + "%");
         add(numberRight);
         add(percentage);
+
+
+
     }
 
 
-        public JTextField getTextField() {
+    public JTextField getTextField() {
         return textField;
     }
 
@@ -285,5 +303,8 @@ public class QuizView extends JFrame implements ActionListener {
         return percentage;
     }
 
+    public int getCorrectAnswers() {
+        return correctAnswers;
+    }
 }
 

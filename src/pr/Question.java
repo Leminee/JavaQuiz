@@ -1,14 +1,16 @@
 package pr;
 
-public class Question {
+import java.io.Serializable;
+
+public class Question implements Serializable {
 
     public static final String[] questions = {
             "Was ist int?",
             "Was ist Integer?",
             "Welcher dieser Datentypen ist kein primitiver Datentyp?",
             "Was wird mit System.gc() aufgerufen?",
-            "woran erkennt man eine Methode ohne Rückgabetyp?",
-            "Wofür steht OOP",
+            "Woran erkennt man eine Methode ohne Rückgabetyp?",
+            "Wofür steht OOP?",
             "Welche dieser Methoden besitzt die String-Klasse nicht?",
             "Wie erzeugt man in Java einen Einzeiligen Kommentar?",
             "Wie wandelt man einen String (str) in einen int um?",
@@ -17,10 +19,10 @@ public class Question {
 
 
     public static final String[][] options = {
-            {"Utility Klasse", "Wrapper Klasse", "Primitiver Datentyp"},
-            {"Liste", "Wrapper Klasse", "Primitiver Datentyp"},
+            {"Utility Klasse", "Wrapper Klasse", "primitiver Datentyp"},
+            {"Liste", "Wrapper Klasse", "primitiver Datentyp"},
             {"Long", "int", "double"},
-            {"Garbage Collector", "exit", "Reader"},
+            {"Garbage Collector", "Exit", "Reader"},
             {"static", "void", "public"},
             {"Operating Object Programming", "Object Or Parameter", "Objekt Orientierte Programmierung"},
             {"concat", "append", "getString()"},
