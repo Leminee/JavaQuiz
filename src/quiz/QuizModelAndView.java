@@ -22,6 +22,7 @@ public class QuizModelAndView extends JFrame implements ActionListener, Serializ
     public static final Color RED = new Color(255, 0, 0);
     public static final Color GREEN = new Color(25, 255, 0);
     public static final Color BLACK = new Color(25, 25, 25);
+    public static final Color ANO = new Color(50, 50, 50);
 
     private int seconds = 15;
     private static int correctAnswers = 0;
@@ -66,7 +67,7 @@ public class QuizModelAndView extends JFrame implements ActionListener, Serializ
         textArea.setWrapStyleWord(true);
         textArea.setBackground(new Color(25, 25, 25));
         textArea.setForeground(WHITE);
-        textArea.setFont(new Font("Default", Font.BOLD, 20));
+        textArea.setFont(new Font("Default", Font.CENTER_BASELINE, 23));
         textArea.setBorder(BorderFactory.createBevelBorder(1));
         textArea.setEditable(false);
 
@@ -90,12 +91,12 @@ public class QuizModelAndView extends JFrame implements ActionListener, Serializ
         buttonC.setText("C");
 
         answerA.setBounds(125, 115, 500, 100);
-        answerA.setBackground(new Color(50, 50, 50));
+        answerA.setBackground(ANO);
         answerA.setForeground(WHITE);
         answerA.setFont(new Font("Default", Font.PLAIN, 20));
 
         answerB.setBounds(125, 210, 500, 100);
-        answerB.setBackground(new Color(50, 50, 50));
+        answerB.setBackground(ANO);
         answerB.setForeground(WHITE);
         answerB.setFont(new Font("Default", Font.PLAIN, 20));
 
@@ -136,19 +137,24 @@ public class QuizModelAndView extends JFrame implements ActionListener, Serializ
     }
 
 
-
     public void nextQuestion() throws IOException {
         if (index >= ALL_QUESTIONS) {
             results();
 
         } else {
 
-            textField.setText("Fragen " +(index + 1));
+            answerA.setForeground(WHITE);
+            answerB.setForeground(WHITE);
+            answerC.setForeground(WHITE);
+
+            textField.setText("Frage " +(index + 1));
             textArea.setText(Question.questions[index]);
             answerA.setText(Question.options[index][0]);
             answerB.setText(Question.options[index][1]);
             answerC.setText(Question.options[index][2]);
+
             timer.start();
+
         }
     }
 
@@ -165,6 +171,7 @@ public class QuizModelAndView extends JFrame implements ActionListener, Serializ
                 correctAnswers++;
             }
         }
+
         if (e.getSource() == buttonB) {
             answer = 'B';
             if (answer == Question.answers[index]) {
@@ -195,11 +202,16 @@ public class QuizModelAndView extends JFrame implements ActionListener, Serializ
         if(Question.answers[index] != 'C')
             answerC.setForeground(RED);
 
+        if(Question.answers[index] == 'A')
+            answerA.setForeground(GREEN);
+        if(Question.answers[index] == 'B')
+            answerB.setForeground(GREEN);
+        if(Question.answers[index] == 'C')
+            answerC.setForeground(GREEN);
+
+
         Timer pause = new Timer(2000, e -> {
 
-            answerA.setForeground(GREEN);
-            answerB.setForeground(GREEN);
-            answerC.setForeground(GREEN);
 
             answer = ' ';
             seconds = 15;
