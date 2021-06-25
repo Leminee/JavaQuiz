@@ -1,8 +1,7 @@
 package pr;
 
-import java.io.Serializable;
 
-public class Question implements Serializable {
+public class Question{
 
     public static final String[] questions = {
             "Was ist int?",

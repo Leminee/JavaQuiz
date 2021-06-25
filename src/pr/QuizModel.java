@@ -6,8 +6,8 @@ import java.awt.event.ActionListener;
 import java.io.*;
 import java.time.LocalDate;
 
-public class QuizModel extends Question implements ActionListener {
-
+public class QuizModel {
+/*
     QuizView quizView = new QuizView();
     private int seconds = 30;
     public static int  correctAnswers = 0;
@@ -134,6 +134,6 @@ public class QuizModel extends Question implements ActionListener {
         quizView.add(quizView.getPercentage());
 
 
-    }
+    }*/
 
 }

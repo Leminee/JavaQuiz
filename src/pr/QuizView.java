@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import java.io.*;
 import javax.swing.*;
 
-public class QuizView extends JFrame implements ActionListener, Serializable{
+public class QuizView extends JFrame implements ActionListener{
 
     private final JTextField textField = new JTextField();
     private final JTextArea textArea = new JTextArea();

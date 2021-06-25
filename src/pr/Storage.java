@@ -10,7 +10,7 @@ import java.util.List;
 public class Storage {
 
 
-    private final String DATA = "/Users/lem/Desktop/datei.txt";
+    private final String DATA = "/Users/lem/Documents/Projekte/PRII/storage.txt";
     private static double averageCorrectAnswers;
     private final List<String> amountCorrectAnswers = new ArrayList<>();
 
@@ -18,14 +18,11 @@ public class Storage {
 
         try {
 
-            LocalDateTime now;
-            FileWriter data;
-
-            data = new FileWriter(DATA, true);
+            FileWriter data = new FileWriter(DATA, true);
             QuizView quizView = new QuizView();
             int numberCorrectAnswers = quizView.getCorrectAnswers();
 
-            now = LocalDateTime.now();
+            LocalDateTime now = LocalDateTime.now();
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 
             BufferedWriter bufferedWriter = new BufferedWriter(data);
@@ -60,7 +57,6 @@ public class Storage {
                 }
                 amount++;
             }
-
 
             bufferedReader.close();
 
