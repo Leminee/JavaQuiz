@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="PRII:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/PRII_jar</output-path>
+    <root id="archive" name="PRII.jar">
+      <element id="module-output" name="PRII" />
+    </root>
+  </artifact>
+</component>
