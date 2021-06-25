@@ -1,4 +1,4 @@
-package pr;
+package quiz;
 
 
 public class Question{

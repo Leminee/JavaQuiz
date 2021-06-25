@@ -1,4 +1,4 @@
-package pr;
+package quiz;
 
 import java.io.*;
 import java.time.LocalDateTime;
@@ -17,8 +17,8 @@ public class Storage {
         try {
 
             FileWriter data = new FileWriter(DATA, true);
-            QuizView quizView = new QuizView();
-            int numberCorrectAnswers = quizView.getCorrectAnswers();
+            QuizModelAndView quizModelAndView = new QuizModelAndView();
+            int numberCorrectAnswers = quizModelAndView.getCorrectAnswers();
 
             LocalDateTime now = LocalDateTime.now();
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");

@@ -1,4 +1,5 @@
-package pr;
+package mvc;
+
 
 public class QuizController {
 

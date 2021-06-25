@@ -1,13 +1,13 @@
-package pr;
+package mvc;
 
 
 import java.io.IOException;
 
-public class Main{
+public class Main {
 
     public static void main(String[] args) throws IOException {
 
-        QuizView quizView = new QuizView();
+        QuizView quizView= new QuizView();
         quizView.init();
 
         QuizModel quizModel = new QuizModel();
@@ -16,5 +16,3 @@ public class Main{
         quizView.setVisible(true);
     }
 }
-
-

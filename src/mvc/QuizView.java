@@ -1,12 +1,12 @@
-package pr;
+package mvc;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.*;
+
 import javax.swing.*;
+import java.awt.*;
+import java.io.IOException;
 
-public class QuizView extends JFrame implements ActionListener{
+public class QuizView extends JFrame {
+
 
     private final JTextField textField = new JTextField();
     private final JTextArea textArea = new JTextArea();
@@ -22,24 +22,10 @@ public class QuizView extends JFrame implements ActionListener{
     public static final Color RED = new Color(255, 0, 0);
     public static final Color GREEN = new Color(25, 255, 0);
     public static final Color BLACK = new Color(25, 25, 25);
-
-    private int seconds = 10;
-    private static int correctAnswers = 0;
-    private int index;
-    private char answer;
-    private final int ALL_QUESTIONS = Question.questions.length;
+    QuizModel quizModel = new QuizModel();
 
     public QuizView() throws IOException {
     }
-
-    Timer timer = new Timer(1000, e -> {
-        seconds--;
-        secondsLeft.setText(String.valueOf(seconds));
-        if(seconds <= 0 ) {
-            displayAnswer();
-        }
-    });
-
 
 
     public void init() throws IOException {
@@ -74,19 +60,16 @@ public class QuizView extends JFrame implements ActionListener{
         buttonA.setBounds(0, 120, 100, 100);
         buttonA.setFont(new Font("Default", Font.BOLD, 25));
         buttonA.setFocusable(false);
-        buttonA.addActionListener(this);
         buttonA.setText("A");
 
         buttonB.setBounds(0, 220, 100, 100);
         buttonB.setFont(new Font("Default", Font.BOLD, 25));
         buttonB.setFocusable(false);
-        buttonB.addActionListener(this);
         buttonB.setText("B");
 
         buttonC.setBounds(0, 320, 100, 100);
         buttonC.setFont(new Font("Default", Font.BOLD, 25));
         buttonC.setFocusable(false);
-        buttonC.addActionListener(this);
         buttonC.setText("C");
 
         answerA.setBounds(125, 115, 500, 100);
@@ -132,119 +115,51 @@ public class QuizView extends JFrame implements ActionListener{
         add(answerC);
         add(secondsLeft);
 
-        nextQuestion();
+        quizModel.nextQuestion();
     }
 
 
-    public void nextQuestion() throws IOException {
-        if (index >= ALL_QUESTIONS) {
-            results();
-
-        } else {
-
-            textField.setText("Fragen " +(index + 1));
-            textArea.setText(Question.questions[index]);
-            answerA.setText(Question.options[index][0]);
-            answerB.setText(Question.options[index][1]);
-            answerC.setText(Question.options[index][2]);
-            timer.start();
-        }
+    public JTextField getTextField() {
+        return textField;
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
-        buttonA.setEnabled(false);
-        buttonB.setEnabled(false);
-        buttonC.setEnabled(false);
-
-        if (e.getSource() == buttonA) {
-            answer = 'A';
-            if (answer == Question.answers[index]) {
-                correctAnswers++;
-            }
-        }
-        if (e.getSource() == buttonB) {
-            answer = 'B';
-            if (answer == Question.answers[index]) {
-                correctAnswers++;
-            }
-        }
-        if (e.getSource() == buttonC) {
-            answer = 'C';
-            if (answer == Question.answers[index]) {
-                correctAnswers++;
-            }
-        }
-        displayAnswer();
+    public JTextArea getTextArea() {
+        return textArea;
     }
 
-    public void displayAnswer() {
+    public JButton getButtonA() {
+        return buttonA;
+    }
 
-        timer.stop();
+    public JButton getButtonB() {
+        return buttonB;
+    }
 
-        buttonA.setEnabled(false);
-        buttonB.setEnabled(false);
-        buttonC.setEnabled(false);
+    public JButton getButtonC() {
+        return buttonC;
+    }
 
-        if(Question.answers[index] != 'A')
-            answerA.setForeground(RED);
-        if(Question.answers[index] != 'B')
-            answerB.setForeground(RED);
-        if(Question.answers[index] != 'C')
-            answerC.setForeground(RED);
+    public JLabel getAnswerA() {
+        return answerA;
+    }
 
-        Timer pause = new Timer(2000, e -> {
+    public JLabel getAnswerB() {
+        return answerB;
+    }
 
-            answerA.setForeground(GREEN);
-            answerB.setForeground(GREEN);
-            answerC.setForeground(GREEN);
+    public JLabel getAnswerC() {
+        return answerC;
+    }
 
-            answer = ' ';
-            seconds = 10;
-            secondsLeft.setText(String.valueOf(seconds));
-            buttonA.setEnabled(true);
-            buttonB.setEnabled(true);
-            buttonC.setEnabled(true);
-            index++;
-            try {
-                nextQuestion();
+    public JLabel getSecondsLeft() {
+        return secondsLeft;
+    }
 
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            }
-        });
-        pause.setRepeats(false);
-        pause.start();
+    public JTextField getNumberRight() {
+        return numberRight;
     }
 
 
-    public void results()  {
 
-        Storage storage = new Storage();
 
-        storage.storeData();
-        storage.readData();
-        storage.calculateAverage();
-
-        buttonA.setEnabled(false);
-        buttonB.setEnabled(false);
-        buttonC.setEnabled(false);
-
-        int amount = storage.getAverageCorrectAnswers();
-        textField.setText("Quiz Ergebnis");
-        textArea.setText("Im Durchschnitt haben Spieler " + amount + " richtige Antworten");
-        answerA.setText("");
-        answerB.setText("");
-        answerC.setText("");
-
-        numberRight.setText(correctAnswers + "/" + ALL_QUESTIONS);
-        add(numberRight);
-        secondsLeft.setText("0");
-
-    }
-
-    public int getCorrectAnswers() {
-        return correctAnswers;
-    }
 }
