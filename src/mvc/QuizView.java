@@ -3,9 +3,11 @@ package mvc;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 
-public class QuizView extends JFrame {
+public class QuizView extends JFrame implements ActionListener {
 
 
     private final JTextField textField = new JTextField();
@@ -61,16 +63,19 @@ public class QuizView extends JFrame {
         buttonA.setFont(new Font("Default", Font.BOLD, 25));
         buttonA.setFocusable(false);
         buttonA.setText("A");
+        buttonA.addActionListener(this);
 
         buttonB.setBounds(0, 220, 100, 100);
         buttonB.setFont(new Font("Default", Font.BOLD, 25));
         buttonB.setFocusable(false);
         buttonB.setText("B");
+        buttonB.addActionListener(this);
 
         buttonC.setBounds(0, 320, 100, 100);
         buttonC.setFont(new Font("Default", Font.BOLD, 25));
         buttonC.setFocusable(false);
         buttonC.setText("C");
+        buttonC.addActionListener(this);
 
         answerA.setBounds(125, 115, 500, 100);
         answerA.setBackground(new Color(50, 50, 50));
@@ -160,6 +165,8 @@ public class QuizView extends JFrame {
     }
 
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
 
-
+    }
 }

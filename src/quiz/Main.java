@@ -1,6 +1,5 @@
 package quiz;
 
-import mvc.QuizView;
 
 import java.io.IOException;
 

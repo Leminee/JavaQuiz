@@ -1,7 +1,9 @@
 package quiz;
 
 
-public class Question{
+import java.io.Serializable;
+
+public class Question implements Serializable {
 
     public static final String[] questions = {
             "Was ist int?",

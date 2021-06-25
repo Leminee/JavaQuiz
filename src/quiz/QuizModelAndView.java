@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import java.io.*;
 import javax.swing.*;
 
-public class QuizModelAndView extends JFrame implements ActionListener{
+public class QuizModelAndView extends JFrame implements ActionListener, Serializable{
 
     private final JTextField textField = new JTextField();
     private final JTextArea textArea = new JTextArea();
@@ -23,7 +23,7 @@ public class QuizModelAndView extends JFrame implements ActionListener{
     public static final Color GREEN = new Color(25, 255, 0);
     public static final Color BLACK = new Color(25, 25, 25);
 
-    private int seconds = 10;
+    private int seconds = 15;
     private static int correctAnswers = 0;
     private int index;
     private char answer;
@@ -136,6 +136,7 @@ public class QuizModelAndView extends JFrame implements ActionListener{
     }
 
 
+
     public void nextQuestion() throws IOException {
         if (index >= ALL_QUESTIONS) {
             results();
@@ -201,7 +202,7 @@ public class QuizModelAndView extends JFrame implements ActionListener{
             answerC.setForeground(GREEN);
 
             answer = ' ';
-            seconds = 10;
+            seconds = 15;
             secondsLeft.setText(String.valueOf(seconds));
             buttonA.setEnabled(true);
             buttonB.setEnabled(true);

@@ -6,9 +6,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Storage {
+public class Storage implements Serializable{
 
-    private final String DATA = "/Users/lem/Documents/Projekte/PRII/storage.txt";
+    private final String DATA = "storage.txt";
     private static int averageCorrectAnswers;
     private final List<String> amountCorrectAnswers = new ArrayList<>();
 
