@@ -212,7 +212,6 @@ public class QuizModelAndView extends JFrame implements ActionListener, Serializ
 
         Timer pause = new Timer(2000, e -> {
 
-
             answer = ' ';
             seconds = 15;
             secondsLeft.setText(String.valueOf(seconds));
