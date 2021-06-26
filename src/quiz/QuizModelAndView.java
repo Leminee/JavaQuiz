@@ -4,9 +4,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
+import java.rmi.server.UnicastRemoteObject;
 import javax.swing.*;
 
-public class QuizModelAndView extends JFrame implements ActionListener, Serializable{
+public class QuizModelAndView extends UnicastRemoteObject implements ActionListener, Serializable,IQuizModelAndView{
 
     private final JTextField textField = new JTextField();
     private final JTextArea textArea = new JTextArea();
@@ -31,7 +32,10 @@ public class QuizModelAndView extends JFrame implements ActionListener, Serializ
     private final int ALL_QUESTIONS = Question.questions.length;
 
     public QuizModelAndView() throws IOException {
+
+
     }
+
 
     Timer timer = new Timer(1000, e -> {
         seconds--;
@@ -41,16 +45,19 @@ public class QuizModelAndView extends JFrame implements ActionListener, Serializ
         }
     });
 
+    JFrame jFrame = new JFrame();
 
-
+    @Override
     public void init() throws IOException {
 
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(680, 640);
-        getContentPane().setBackground(new Color(50, 50, 50));
-        setLocationRelativeTo(null);
-        setLayout(null);
-        setResizable(false);
+
+
+        jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        jFrame.setSize(680, 640);
+        jFrame.getContentPane().setBackground(new Color(50, 50, 50));
+        jFrame.setLocationRelativeTo(null);
+        jFrame.setLayout(null);
+        jFrame.setResizable(false);
 
 
         textField.setBounds(0, -10, 680, 80);
@@ -123,15 +130,15 @@ public class QuizModelAndView extends JFrame implements ActionListener, Serializ
         numberRight.setHorizontalAlignment(JTextField.CENTER);
         numberRight.setEditable(false);
 
-        add(textField);
-        add(textArea);
-        add(buttonA);
-        add(buttonB);
-        add(buttonC);
-        add(answerA);
-        add(answerB);
-        add(answerC);
-        add(secondsLeft);
+        jFrame.add(textField);
+        jFrame.add(textArea);
+        jFrame.add(buttonA);
+        jFrame.add(buttonB);
+        jFrame.add(buttonC);
+        jFrame.add(answerA);
+        jFrame.add(answerB);
+        jFrame.add(answerC);
+        jFrame.add(secondsLeft);
 
         nextQuestion();
     }
@@ -251,7 +258,7 @@ public class QuizModelAndView extends JFrame implements ActionListener, Serializ
         answerC.setText("");
 
         numberRight.setText(correctAnswers + "/" + ALL_QUESTIONS);
-        add(numberRight);
+        jFrame.add(numberRight);
         secondsLeft.setText("0");
 
     }
