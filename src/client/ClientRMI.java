@@ -9,7 +9,6 @@ public class ClientRMI {
     private static final String URL = "rmi://localhost:1099/quiz";
 
     public static void main(String[] args) {
-
         try {
             IQuizModelAndView stub;
             stub = (IQuizModelAndView) Naming.lookup(URL);

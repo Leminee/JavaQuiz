@@ -76,7 +76,7 @@ public class Storage implements Serializable{
         if (amountCorrectAnswers.size() == 0) {
             return;
         }
-        averageCorrectAnswers = sum/amountCorrectAnswers.size();
+        averageCorrectAnswers = sum / amountCorrectAnswers.size();
     }
 
     private boolean isEven(int number) {
